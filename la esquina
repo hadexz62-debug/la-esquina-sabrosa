@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Esquina Sabrosa | Restaurante Latinoamericano en Tampa</title>
+    <meta name="description" content="Auténtica cocina caribeña, dominicana y cubana en Forest Hills, Tampa.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+    <style>
+        /* ================= VARIABLES ================= */
+        :root {
+            --primary-bg: #1B3A2D; /* Verde selva oscuro */
+            --accent-main: #F5A623; /* Amarillo mango maduro */
+            --accent-main-hover: #E0941D;
+            --accent-secondary: #D94F3D; /* Rojo guayaba */
+            --bg-light: #FDF6EC; /* Crema yuca */
+            --bg-white: #FFFFFF;
+            --text-main: #2C2C2C; /* Carbón */
+            --text-light: #FFFFFF;
+            
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Nunito', sans-serif;
+
+            --nav-height: 80px;
+        }
+
+        /* ================= RESET Y BASES ================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--nav-height); /* Evita que el navbar tape el contenido al hacer scroll */
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-main);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-display);
+            color: var(--primary-bg);
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Accesibilidad: foco visible */
+        *:focus-visible {
+            outline: 3px solid var(--accent-main);
+            outline-offset: 3px;
+        }
+
+        /* ================= CLASES DE UTILIDAD ================= */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .label {
+            font-family: var(--font-body);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: var(--accent-secondary);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* Botones */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            font-family: var(--font-body);
+            font-weight: 700;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-main);
+            color: var(--text-main);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-main-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-light);
+            border: 2px solid var(--text-light);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--text-light);
+            color: var(--primary-bg);
+        }
+
+        /* ================= 1. NAVBAR ================= */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            background-color: var(--primary-bg);
+            color: var(--text-light);
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-main);
+            font-style: italic;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-main);
+        }
+
+        .nav-toggle {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+        }
+
+        /* ================= 2. HERO SECTION ================= */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: var(--nav-height);
+            /* Gradiente verde selva a amarillo mango y overlay de palma SVG codificado */
+            background-image: 
+                url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10,90 C30,30 80,10 90,90 C80,50 30,50 10,90 Z' fill='rgba(255,255,255,0.06)'/%3E%3C/svg%3E"),
+                linear-gradient(135deg, var(--primary-bg) 0%, #3e6d53 40%, var(--accent-main) 100%);
+            background-size: 120px 120px, cover;
+            background-position: center;
+            color: var(--text-light);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            color: var(--text-light);
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        /* ================= 3. HIGHLIGHTS ================= */
+        .highlights {
+            background-color: var(--bg-white);
+            margin-top: -50px;
+            position: relative;
+            z-index: 10;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            padding: 40px 20px;
+        }
+
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .highlight-item {
+            padding: 20px;
+        }
+
+        .highlight-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .highlight-title {
+            font-family: var(--font-body);
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-bg);
+        }
+
+        /* ================= 4. MENÚ DESTACADO ================= */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .menu-card {
+            background-color: var(--bg-white);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            border-bottom: 4px solid var(--accent-main);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            
+            /* Estado inicial para animación */
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .menu-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .menu-card:hover {
+            transform: scale(1.03) translateY(0); /* Ligero crecimiento en hover */
+            box-shadow: 0 15px 25px rgba(245, 166, 35, 0.2); /* Sombra cálida */
+        }
+
+        .menu-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .menu-card h3 {
+            font-family: var(--font-body);
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .menu-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .menu-disclaimer {
+            text-align: center;
+            margin-top: 40px;
+            font-style: italic;
+            color: #666;
+        }
+
+        /* ================= 5. SOBRE NOSOTROS ================= */
+        .about-section {
+            background-color: var(--bg-white);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .about-quote {
+            background-color: var(--bg-light);
+            padding: 50px;
+            border-radius: 16px;
+            position: relative;
+            border-left: 8px solid var(--accent-main);
+        }
+
+        .about-quote p {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--accent-secondary);
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        /* ================= 6. RESEÑAS ================= */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .review-card {
+            background-color: var(--bg-white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .stars {
+            color: var(--accent-main);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .review-text {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .review-author {
+            font-weight: 700;
+            color: var(--primary-bg);
+        }
+
+        /* ================= 7. CONTACTO / VISÍTANOS ================= */
+        .contact-section {
+            background-color: var(--bg-white);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .info-block h3 {
+            font-family: var(--font-body);
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: var(--primary-bg);
+        }
+
+        .info-block p {
+            color: #555;
+        }
+
+        .delivery-badge {
+            display: inline-block;
+            background-color: var(--bg-light);
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: 1px solid var(--accent-main);
+            color: var(--primary-bg);
+            font-weight: 700;
+            margin-top: 10px;
+        }
+
+        .map-placeholder {
+            background-color: #EAEAEA;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 350px;
+            color: #888;
+            border: 2px dashed #ccc;
+        }
+
+        .map-placeholder span {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        /* ================= 8. FOOTER ================= */
+        .footer {
+            background-color: var(--primary-bg);
+            color: var(--text-light);
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-style: italic;
+            color: var(--accent-main);
+            margin-bottom: 15px;
+        }
+
+        .footer-credits {
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: #aaa;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 1024px) {
+            .hero h1 { font-size: 3.2rem; }
+            .about-quote p { font-size: 1.6rem; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-toggle { display: block; }
+            
+            .nav-links {
+                position: absolute;
+                top: var(--nav-height);
+                left: -100%;
+                width: 100%;
+                background-color: var(--primary-bg);
+                flex-direction: column;
+                padding: 30px 20px;
+                gap: 20px;
+                transition: left 0.3s ease;
+                box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1.2rem; }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .about-grid, .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-quote {
+                padding: 30px;
+            }
+
+            .highlights {
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">La Esquina Sabrosa</a>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">☰</button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#menu">Menú</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#contacto" class="btn btn-primary">Ordenar ahora</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 2. HERO -->
+    <header class="hero" id="inicio">
+        <div class="container hero-content">
+            <h1>Sabor del Caribe, corazón de Tampa.</h1>
+            <p>Descubre el auténtico sabor de la cocina dominicana y cubana en un ambiente familiar.</p>
+            <div class="hero-buttons">
+                <a href="#menu" class="btn btn-primary">Ver Menú</a>
+                <a href="#contacto" class="btn btn-outline">Cómo Llegar</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 3. HIGHLIGHTS -->
+    <div class="container">
+        <section class="highlights" aria-label="Características destacadas">
+            <div class="highlights-grid">
+                <div class="highlight-item">
+                    <div class="highlight-icon">🌴</div>
+                    <div class="highlight-title">Cocina Caribeña Auténtica</div>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon">⭐</div>
+                    <div class="highlight-title">4.5 Estrellas en Promedio</div>
+                </div>
+                <div class="highlight-item">
+                    <div class="highlight-icon">🚗</div>
+                    <div class="highlight-title">Estacionamiento Gratis</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 4. MENÚ DESTACADO -->
+    <section class="section-padding" id="menu">
+        <div class="container">
+            <div class="text-center">
+                <span class="label">Especialidades</span>
+                <h2>Menú Destacado</h2>
+            </div>
+            
+            <div class="menu-grid">
+                <!-- Card 1 -->
+                <div class="menu-card">
+                    <div class="menu-icon">🇩🇴</div>
+                    <h3>Mangú Tradicional</h3>
+                    <p>Puré de plátano verde acompañado de huevos, queso frito y salami.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="menu-card">
+                    <div class="menu-icon">🥪</div>
+                    <h3>Sándwich Cubano</h3>
+                    <p>Cerdo asado, jamón, queso suizo, pepinillos y mostaza prensado a la perfección.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="menu-card">
+                    <div class="menu-icon">🧄</div>
+                    <h3>Mofongo al Ajillo</h3>
+                    <p>Plátano frito majado con ajo y chicharrón, bañado en salsa de ajo.</p>
+                </div>
+                <!-- Card 4 -->
+                <div class="menu-card">
+                    <div class="menu-icon">🍲</div>
+                    <h3>Sopa de Res</h3>
+                    <p>Reconfortante caldo caribeño con carne suave, vegetales y viandas.</p>
+                </div>
+                <!-- Card 5 -->
+                <div class="menu-card">
+                    <div class="menu-icon">🥟</div>
+                    <h3>Empanadas</h3>
+                    <p>Rellenas de pollo, res o queso, fritas hasta quedar doradas y crujientes.</p>
+                </div>
+                <!-- Card 6 -->
+                <div class="menu-card">
+                    <div class="menu-icon">🍌</div>
+                    <h3>Tostones con Salami</h3>
+                    <p>El antojito perfecto: plátanos fritos aplastados con salami dominicano.</p>
+                </div>
+            </div>
+
+            <p class="menu-disclaimer">Nota: Contamos con desayunos abundantes y batidos tropicales. Precios y disponibilidad a consultar en el local.</p>
+        </div>
+    </section>
+
+    <!-- 5. SOBRE NOSOTROS -->
+    <section class="section-padding about-section" id="nosotros">
+        <div class="container about-grid">
+            <div class="about-text">
+                <span class="label">Nuestra Historia</span>
+                <h2>Sazón y Tradición Familiar</h2>
+                <p>En La Esquina Sabrosa nos enorgullecemos de servir auténticos sabores de la República Dominicana y Cuba. Situados en el corazón del barrio Forest Hills en Tampa, somos un negocio dedicado a traer la calidez y la alegría de la sazón caribeña a tu mesa.</p>
+                <p>Nuestro ambiente casual y comunitario invita a familias y amigos a compartir, comer rico y sentirse verdaderamente en casa. Valoramos nuestras raíces y cocinamos cada plato como si fuera para nuestra propia familia.</p>
+            </div>
+            <div class="about-quote">
+                <p>“Un punto de encuentro para la comunidad latina de Tampa.”</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. RESEÑAS -->
+    <section class="section-padding" id="reseñas">
+        <div class="container">
+            <div class="text-center">
+                <span class="label">Testimonios</span>
+                <h2>Lo que dicen nuestros clientes</h2>
+            </div>
+            
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">"¡El mejor mangú que he probado fuera de la isla! Auténtico sabor y excelente servicio. Te hacen sentir en familia desde que entras."</p>
+                    <p class="review-author">- Carlos M.</p>
+                </div>
+                <div class="review-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">"El sándwich cubano es gigante y súper crujiente. El local tiene un ambiente maravilloso. Estacionamiento fácil y comida de 10."</p>
+                    <p class="review-author">- Laura G.</p>
+                </div>
+                <div class="review-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">"Pedimos mofongo y empanadas para llevar. Todo llegó súper caliente y delicioso. 100% recomendado para matar el antojo latino."</p>
+                    <p class="review-author">- Miguel T.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. CONTACTO / VISÍTANOS -->
+    <section class="section-padding contact-section" id="contacto">
+        <div class="container">
+            <div class="text-center mb-5" style="margin-bottom: 40px;">
+                <span class="label">Visítanos</span>
+                <h2>Nuestra Ubicación</h2>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="info-block">
+                        <h3>📍 Dirección</h3>
+                        <p>2730 W Waters Ave<br>Tampa, FL 33614 (Barrio Forest Hills)</p>
+                    </div>
+                    <div class="info-block">
+                        <h3>🕒 Horarios</h3>
+                        <p>Lunes a Domingo<br><em>*Por favor, contáctanos directamente para confirmar nuestros horarios de operación de hoy.</em></p>
+                    </div>
+                    <div class="info-block">
+                        <h3>♿ Servicios</h3>
+                        <p>Comedor en el local, Para llevar, Accesible para sillas de ruedas, Se aceptan tarjetas de crédito.</p>
+                        <div class="delivery-badge">🚗 Delivery disponible vía Uber Eats y Restaurantji</div>
+                    </div>
+                </div>
+
+                <!-- Google Maps Placeholder (sin imágenes externas) -->
+                <div class="map-placeholder">
+                    <span>🗺️</span>
+                    <p><strong>Ubicación en Mapa</strong></p>
+                    <p style="font-size: 0.9rem;">2730 W Waters Ave, Tampa, FL</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">La Esquina Sabrosa</div>
+            <p>2730 W Waters Ave, Tampa, FL 33614</p>
+            <p>Comida Latinoamericana • Dominicana • Cubana</p>
+            
+            <div class="footer-credits">
+                &copy; <script>document.write(new Date().getFullYear())</script> La Esquina Sabrosa. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT VANILLA -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Funcionalidad del Menú Móvil
+            const navToggle = document.getElementById('nav-toggle');
+            const navLinks = document.getElementById('nav-links');
+            const links = navLinks.querySelectorAll('a');
+
+            navToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            // Cerrar menú al hacer clic en un enlace (móvil)
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 768) {
+                        navLinks.classList.remove('active');
+                    }
+                });
+            });
+
+            // 2. Animación de Scroll (Fade-In) usando Intersection Observer
+            // Se aplica a las tarjetas del menú destacado
+            const menuCards = document.querySelectorAll('.menu-card');
+
+            // Configuración del observador
+            const observerOptions = {
+                root: null, // usa el viewport
+                rootMargin: '0px',
+                threshold: 0.15 // Se activa cuando el 15% del elemento es visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Añadimos un pequeño retraso basado en el índice para efecto cascada
+                        const cardIndex = Array.from(menuCards).indexOf(entry.target);
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, cardIndex * 100); 
+                        
+                        // Dejamos de observar el elemento una vez animado
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Iniciar observación
+            menuCards.forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
